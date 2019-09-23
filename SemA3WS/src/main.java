@@ -25,6 +25,9 @@ public class main {
 		point1.m_afficherCoordo();
 		point2.m_afficherCoordo();
 		
+		// 6
+		
+		
 	}
 
 }
