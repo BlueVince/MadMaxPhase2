@@ -19,7 +19,7 @@ public class CLpoint2D {
 	}
 	
 	public void m_afficherCoordo() {
-		System.out.println(this.getX() + ":" + this.getY());
+		System.out.println("(" + this.getX() + ";" + this.getY() + ")");
 	}
 	
 	

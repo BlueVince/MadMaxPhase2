@@ -6,7 +6,7 @@ public class main {
 		
 		CLbonjour CLb = new CLbonjour();
 		
-		System.out.println(CLb.m_bonjour());
+		//System.out.println(CLb.m_bonjour());
 		
 		// 3
 
@@ -16,13 +16,14 @@ public class main {
 		
 		r = CLa.m_addition(a, b);
 		
-		System.out.println(r);
+		//System.out.println(r);
 		
 		// 5
 		
-		CLpoint2D CLp = new CLpoint2D(10, 18);
+		CLpoint2D point1 = new CLpoint2D(), point2 = new CLpoint2D(-1, 1);
 		
-		CLp.m_afficherCoordo();
+		point1.m_afficherCoordo();
+		point2.m_afficherCoordo();
 		
 	}
 
