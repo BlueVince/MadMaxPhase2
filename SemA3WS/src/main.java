@@ -22,12 +22,23 @@ public class main {
 		
 		CLpoint2D point1 = new CLpoint2D(), point2 = new CLpoint2D(-1, 1);
 		
+		/*
 		point1.m_afficherCoordo();
 		point2.m_afficherCoordo();
+		/**/
 		
 		// 6
 		
+		CLdistance dist = new CLdistance(2);
 		
+		dist.m_ajouterPoint(point1);
+		dist.m_ajouterPoint(point2);
+		
+		dist.m_afficherPoints();
+		
+		dist.m_calculDistance();
+		
+		System.out.println(dist.getDistance());
 	}
 
 }
