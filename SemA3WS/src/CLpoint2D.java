@@ -6,11 +6,14 @@ public class CLpoint2D {
 	private int y;
 	
 	public CLpoint2D() {
-		this.setX(0);
-		this.setY(0);
+		this.coordo(0, 0);
 	}
 
 	public CLpoint2D(int x, int y) {
+		this.coordo(x, y);
+	}
+
+	private void coordo(int x, int y) {
 		this.setX(x);
 		this.setY(y);
 	}
@@ -18,6 +21,8 @@ public class CLpoint2D {
 	public void m_afficherCoordo() {
 		System.out.println(this.getX() + ":" + this.getY());
 	}
+	
+	
 
 	public int getX() {
 		return x;
