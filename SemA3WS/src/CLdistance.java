@@ -7,9 +7,7 @@ public class CLdistance {
 	private double distance = 0;
 	
 	public CLdistance(int n) {
-		
 		tab = new ArrayList<CLpoint2D>(n);
-		
 	}
 	
 	public void m_ajouterPoint(CLpoint2D point) {
@@ -40,12 +38,12 @@ public class CLdistance {
 		this.setDistance(d);
 	}
 
-	private void setDistance(double distance) {
-		this.distance = distance;
-	}
-
 	public double getDistance() {
 		return this.distance;
+	}
+
+	private void setDistance(double distance) {
+		this.distance = distance;
 	}
 	
 }
