@@ -12,7 +12,9 @@ public class CLctrlCrypt {
 		try {
 			PrintWriter p = new PrintWriter(f);
 			
+			p.write(texte);
 			
+			p.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -20,8 +22,6 @@ public class CLctrlCrypt {
 	
 	public String lireFichierSimple(String path) {
 		File f = new File(path);
-		
-		f.read
 		
 		return null;
 	}
