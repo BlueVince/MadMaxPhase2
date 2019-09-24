@@ -1,4 +1,4 @@
-package model.dao;
+package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,7 +21,7 @@ final class DBConnector {
     private static String                  user     = "root";
 
     /** The password. */
-    private static String                  password = "****";
+    private static String                  password = "";
 
     /** The url. */
     private static String                  url      = "jdbc:mysql://localhost/lorann?useSSL=false&serverTimezone=UTC";

@@ -1,4 +1,4 @@
-package model.dao;
+package DAO;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
