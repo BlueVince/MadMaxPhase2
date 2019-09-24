@@ -11,7 +11,6 @@ public class Main {
 		try {
 			users.addAll(DAO.getAllUsers());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -30,7 +29,6 @@ public class Main {
 		try {
 			usr = DAO.addUser(userName, userPass);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

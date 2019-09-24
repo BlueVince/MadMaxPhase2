@@ -24,7 +24,7 @@ public abstract class DAO extends AbstractDAO {
     private static String sqlAllUsers	= "{call findAllUsers()}";
 
     /** The sql stored procedure to add a user. */
-    private static String sqlAddUser	= "{call findAddUser()}";
+    private static String sqlAddUser	= "{call addUser(?, ?)}";
 
 
     /**
