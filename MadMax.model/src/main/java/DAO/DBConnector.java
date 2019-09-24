@@ -9,7 +9,6 @@ import java.sql.Statement;
 /**
  * <h1>The Class BoulderDashBDDConnector.</h1>
  *
- * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
 final class DBConnector {
@@ -24,7 +23,7 @@ final class DBConnector {
     private static String                  password = "";
 
     /** The url. */
-    private static String                  url      = "jdbc:mysql://localhost/lorann?useSSL=false&serverTimezone=UTC";
+    private static String                  url      = "jdbc:mysql://localhost/mm2?useSSL=false&serverTimezone=UTC";
 
     /** The connection. */
     private Connection                     connection;
