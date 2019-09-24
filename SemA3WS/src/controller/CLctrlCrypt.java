@@ -3,6 +3,8 @@ package controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.io.FileReader;
+import java.io.IOException;;
 
 public class CLctrlCrypt {
 
@@ -20,10 +22,17 @@ public class CLctrlCrypt {
 		}
 	}
 	
-	public String lireFichierSimple(String path) {
+	public String lireFichierSimple(String path) throws  {
 		File f = new File(path);
 		
-		return null;
+		try {
+			FileReader r = new FileReader(f);
+				
+				
+				r.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public String crypter(String texte, String Key) {
