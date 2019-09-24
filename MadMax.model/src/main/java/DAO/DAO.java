@@ -5,94 +5,116 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import Model.User;
 
 /**
- * <h1>The Class ObjectDAO.</h1>
+ * <h1>The Class UserDAO.</h1>
  *
  * @version 1.0
  */
 public abstract class DAO extends AbstractDAO {
 
-    /** The sql Object by id. */
-    private static String sqlObjectById   = "{call findObjectById(?)}";
+    /** The sql stored procedure to find a user by id. */
+    private static String sqlUserById	= "{call findUserById(?)}";
 
-    /** The sql Object by name. */
-    private static String sqlObjectByName = "{call findObjectByName(?)}";
+    /** The sql stored procedure to find a user by name. */
+    private static String sqlUserByName	= "{call findUserByName(?)}";
 
-    /** The sql all Objects. */
-    private static String sqlAllObjects   = "{call findAllObjects()}";
+    /** The sql stored procedure to find all users. */
+    private static String sqlAllUsers	= "{call findAllUsers()}";
 
-    /** The id column index. */
-    private static int    idColumnIndex    = 1;
+    /** The sql stored procedure to add a user. */
+    private static String sqlAddUser	= "{call findAddUser()}";
 
-    /** The name column index. */
-    private static int    nameColumnIndex  = 2;
 
     /**
-     * Gets the Object by id.
+     * Gets the User by id.
      *
      * @param id
      *            the id
-     * @return the Object by id
+     * @return the User
      * @throws SQLException
      *             the SQL exception
      */
-    public static Object getObjectById(final int id) throws SQLException {
-        final CallableStatement callStatement = prepareCall(sqlObjectById);
-        Object obj = null;
+    public static User getUserById(final int id) throws SQLException {
+        final CallableStatement callStatement = prepareCall(sqlUserById);
+        User usr = null;
         callStatement.setInt(1, id);
         if (callStatement.execute()) {
             final ResultSet result = callStatement.getResultSet();
             if (result.first()) {
-                //obj = new Object(result.getInt(idColumnIndex), result.getString(nameColumnIndex));
+                usr = new User(result.getInt(1), result.getString(2), result.getString(3));
             }
             result.close();
         }
-        return obj;
+        return usr;
     }
 
     /**
-     * Gets the Object by name.
+     * Gets the User by name.
      *
      * @param name
      *            the name
-     * @return the Object by name
+     * @return the User
      * @throws SQLException
      *             the SQL exception
      */
-    public static Object getObjectByName(final String name) throws SQLException {
-        final CallableStatement callStatement = prepareCall(sqlObjectByName);
-        Object obj = null;
+    public static User getUserByName(final String name) throws SQLException {
+        final CallableStatement callStatement = prepareCall(sqlUserByName);
+        User usr = null;
 
         callStatement.setString(1, name);
         if (callStatement.execute()) {
             final ResultSet result = callStatement.getResultSet();
             if (result.first()) {
-                Object = new Object(result.getInt(idColumnIndex), result.getString(nameColumnIndex));
+                usr = new User(result.getInt(1), result.getString(2), result.getString(3));
             }
             result.close();
         }
-        return obj;
+        return usr;
     }
 
     /**
-     * Gets the all Objects.
+     * Gets all the Users.
      *
-     * @return the all Objects
+     * @return List of User
      * @throws SQLException
      *             the SQL exception
      */
-    public static List<Object> getAllObjects() throws SQLException {
-        final ArrayList<Object> Objects = new ArrayList<Object>();
-        final CallableStatement callStatement = prepareCall(sqlAllObjects);
+    public static List<User> getAllUsers() throws SQLException {
+        final ArrayList<User> users = new ArrayList<User>();
+        final CallableStatement callStatement = prepareCall(sqlAllUsers);
         if (callStatement.execute()) {
             final ResultSet result = callStatement.getResultSet();
 
             for (boolean isResultLeft = result.first(); isResultLeft; isResultLeft = result.next()) {
-                Objects.add(new Object(result.getInt(idColumnIndex), result.getString(nameColumnIndex)));
+            	users.add(new User(result.getInt(1), result.getString(2), result.getString(2)));
             }
             result.close();
         }
-        return obj;
+        return users;
+    }
+
+    /**
+     * Add Users.
+     *
+     * @return The User Added
+     * @throws SQLException
+     *             the SQL exception
+     */
+    public static User addUser(String name, String password) throws SQLException {
+        final CallableStatement callStatement = prepareCall(sqlAddUser);
+        User usr = null;
+
+        callStatement.setString(1, name);
+        callStatement.setString(2, password);
+        if (callStatement.execute()) {
+            final ResultSet result = callStatement.getResultSet();
+            if (result.first()) {
+                usr = new User(result.getInt(1), result.getString(2), result.getString(3));
+            }
+            result.close();
+        }
+        return usr;
     }
 }
