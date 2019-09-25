@@ -1,15 +1,12 @@
 package View;
 
-import java.awt.color.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
 
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
