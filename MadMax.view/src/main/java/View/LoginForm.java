@@ -61,7 +61,7 @@ public class LoginForm extends JFrame implements ActionListener {
 		Object source = e.getSource();
 		
 		if (source == this.getBtn1()) {
-			System.out.println(this.getTf1().getText() + " | " + this.getP1().getPassword().toString());
+			System.out.println(this.getTf1().getText() + " | " + String.valueOf(getP1().getPassword()));
 		}
 	}
 
