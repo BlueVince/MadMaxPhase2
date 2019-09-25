@@ -15,7 +15,11 @@ public class DecryptCtrl implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		
-		if (source == this.getView().getBtn1()) {
+		if (source == this.getView().getBtnBrowse()) {
+			
+		}
+		
+		else if (source == this.getView().getBtnDecryptAndSave()) {
 			
 		}
 	}

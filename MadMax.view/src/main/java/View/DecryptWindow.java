@@ -25,10 +25,11 @@ import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class DecryptWindow extends JFrame implements ActionListener {
+public class DecryptWindow extends JFrame {
 
 	private JPanel contentPane;
-	private JLabel lblX;
+	private JLabel lblX_1;
+	private JButton BtnBrowse, BtnDecryptAndSave;
 
 	/**
 	 * Launch the application.
@@ -44,7 +45,7 @@ public class DecryptWindow extends JFrame implements ActionListener {
 //			}
 //		});
 //	}
-	
+
 	public DecryptWindow() {
 		this.init();
 	}
@@ -52,18 +53,19 @@ public class DecryptWindow extends JFrame implements ActionListener {
 	public DecryptWindow(ActionListener listener) {
 		this.init();
 		
-		if (listener == null) {
-			listener = this;
+		if (listener != null) {
+			this.getBtnBrowse().addActionListener(listener);
+			this.getBtnDecryptAndSave().addActionListener(listener);
 		}
 		
-		this.getBtn1().addActionListener(listener);
+
 	}
 
 	/**
 	 * Create the frame.
 	 */
 	private void init() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(DecryptWindow.class.getResource("/View/Image/decrypt.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DecryptWindow.class.getResource("/View/Image/notre logo.png")));
 		setTitle("Sign in");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 626, 442);
@@ -75,24 +77,24 @@ public class DecryptWindow extends JFrame implements ActionListener {
 		
 		JLabel label = new JLabel("");
 		label.setBounds(33, 0, 247, 442);
-		label.setIcon(new ImageIcon(DecryptWindow.class.getResource("/View/Image/decrypt.png")));
+		label.setIcon(new ImageIcon(DecryptWindow.class.getResource("/View/Image/notre logo.png")));
 		contentPane.add(label);
 		
-		JButton btnBrowse = new JButton("Browse...");
-		btnBrowse.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnBrowse.setForeground(Color.WHITE);
-		btnBrowse.setBackground(Color.DARK_GRAY);
-		btnBrowse.setBounds(398, 142, 143, 44);
-		contentPane.add(btnBrowse);
+		this.setBtnBrowse(new JButton("Browse..."));
+		this.getBtnBrowse().setFont(new Font("Tahoma", Font.PLAIN, 14));
+		this.getBtnBrowse().setForeground(Color.WHITE);
+		this.getBtnBrowse().setBackground(Color.DARK_GRAY);
+		this.getBtnBrowse().setBounds(398, 142, 153, 44);
+		contentPane.add(this.getBtnBrowse());
 		
-		JButton btnDecryptAndSave = new JButton("Decrypt and Save");
-		btnDecryptAndSave.setBackground(Color.DARK_GRAY);
-		btnDecryptAndSave.setForeground(Color.WHITE);
-		btnDecryptAndSave.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnDecryptAndSave.setBounds(398, 265, 143, 44);
-		contentPane.add(btnDecryptAndSave);
+		this.setBtnDecryptAndSave(new JButton("Decrypt and Save"));
+		this.getBtnDecryptAndSave().setBackground(Color.DARK_GRAY);
+		this.getBtnDecryptAndSave().setForeground(Color.WHITE);
+		this.getBtnDecryptAndSave().setFont(new Font("Tahoma", Font.PLAIN, 14));
+		this.getBtnDecryptAndSave().setBounds(398, 265, 153, 44);
+		contentPane.add(this.getBtnDecryptAndSave());
 		
-		JLabel lblX_1 = new JLabel("X");
+		this.lblX_1 = new JLabel("X");
 		lblX_1.addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent e) {
@@ -109,31 +111,21 @@ public class DecryptWindow extends JFrame implements ActionListener {
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 	}
-	
-	public void actionPerformed(ActionEvent e) {
-		Object source = e.getSource();
-	}
-	
-	public JTextField getTf1() {
-		return tf1;
+
+	public JButton getBtnBrowse() {
+		return BtnBrowse;
 	}
 
-	public void setTf1(JTextField tf1) {
-		this.tf1 = tf1;
-	}
-	
-	public JPasswordField getP1() {
-		return p1;
-	}
-	
-	public void setP1(JPasswordField p1) {
-		this.p1 = p1;
-	}
-	
-	public JButton getBtn1() {
+	public void setBtnBrowse(JButton btnBrowse) {
+		BtnBrowse = btnBrowse;
 	}
 
-	public void setBtn1(JButton btn1) {
+	public JButton getBtnDecryptAndSave() {
+		return BtnDecryptAndSave;
+	}
+
+	public void setBtnDecryptAndSave(JButton btnDecryptAndSave) {
+		BtnDecryptAndSave = btnDecryptAndSave;
 	}
 }
 

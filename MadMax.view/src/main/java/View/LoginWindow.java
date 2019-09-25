@@ -68,7 +68,7 @@ public class LoginWindow extends JFrame {
 	 * Create the frame.
 	 */
 	private void init() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/View/Image/decrypt.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/View/Image/notre logo.png")));
 		setTitle("Sign in");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 626, 442);
@@ -104,7 +104,7 @@ public class LoginWindow extends JFrame {
 		p1.setBounds(33, 227, 251, 32);
 		p1.setColumns(10);
 		
-		this.setBtn1(new JButton("Se connecter"));
+		this.setBtn1(new JButton("Sign in"));
 		btn1.setForeground(Color.WHITE);
 		btn1.setBackground(new Color(65, 105, 225));
 		
