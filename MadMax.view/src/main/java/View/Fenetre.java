@@ -20,6 +20,8 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.UIManager;
+import java.awt.Window.Type;
+import java.awt.Toolkit;
 
 public class Fenetre extends JFrame implements ActionListener {
 
@@ -37,7 +39,9 @@ public class Fenetre extends JFrame implements ActionListener {
 			public void run() {
 				try {
 					Fenetre frame = new Fenetre();
+					frame.setUndecorated(true);
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -49,6 +53,8 @@ public class Fenetre extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public Fenetre() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Fenetre.class.getResource("/View/Image/decrypt.png")));
+		setTitle("Sign in");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 626, 442);
 		contentPane = new JPanel();
@@ -60,17 +66,12 @@ public class Fenetre extends JFrame implements ActionListener {
 		panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(311, 0, 299, 403);
-		panel.setLayout(null);
 		contentPane.add(panel);
 		
 		tf1 = new JTextField();
-		tf1.setBounds(27, 133, 251, 31);
-		panel.add(tf1);
 		tf1.setColumns(10);
 		
 		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setBounds(27, 99, 210, 23);
-		panel.add(lblUsername);
 		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblUsername.setForeground(new Color(65, 105, 225));
 		lblUsername.setBackground(Color.BLACK);
@@ -78,19 +79,49 @@ public class Fenetre extends JFrame implements ActionListener {
 		
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(27, 175, 251, 26);
-		panel.add(lblPassword);
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblPassword.setForeground(new Color(65, 105, 225));
 		
 		p1 = new JPasswordField();
-		p1.setBounds(27, 212, 251, 32);
-		panel.add(p1);
 		p1.setColumns(10);
 		
 		this.setBtn1(new JButton("Se connecter"));
 		btn1.setForeground(Color.WHITE);
 		btn1.setBackground(new Color(65, 105, 225));
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(27)
+					.addComponent(lblUsername, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(27)
+					.addComponent(tf1, GroupLayout.PREFERRED_SIZE, 251, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(27)
+					.addComponent(lblPassword, GroupLayout.PREFERRED_SIZE, 251, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(27)
+					.addComponent(p1, GroupLayout.PREFERRED_SIZE, 251, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(78)
+					.addComponent(btn1, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(99)
+					.addComponent(lblUsername, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(tf1, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(lblPassword, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(p1, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+					.addGap(28)
+					.addComponent(btn1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+		);
+		panel.setLayout(gl_panel);
 		
 		this.getBtn1().addActionListener(this);
 	}
@@ -117,8 +148,6 @@ public class Fenetre extends JFrame implements ActionListener {
 
 	public void setBtn1(JButton btn1) {
 		this.btn1 = btn1;
-		btn1.setBounds(78, 272, 159, 40);
-		panel.add(btn1);
 	}      
 	
 	public void actionPerformed(ActionEvent e) {
