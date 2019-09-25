@@ -113,8 +113,10 @@ public class LoginWindow extends JFrame implements ActionListener {
 		lblX.addMouseListener(new MouseAdapter() {
 			
 			public void mouseClicked(MouseEvent e) {
+				System.exit(0);;
 			}
 		});
+		
 		lblX.setBounds(282, 11, 23, 32);
 		lblX.setForeground(Color.RED);
 		lblX.setFont(new Font("Verdana", Font.BOLD, 30));
@@ -128,7 +130,7 @@ public class LoginWindow extends JFrame implements ActionListener {
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(LoginWindow.class.getResource("/View/Image/decrypt.png")));
-		label.setBounds(33, 0, 247, 403);
+		label.setBounds(33, 0, 247, 442);
 		contentPane.add(label);
 		
 		this.setUndecorated(true);
