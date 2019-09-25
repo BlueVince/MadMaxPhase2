@@ -6,4 +6,16 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>MadMax.controller</artifactId>
+  <dependencies>
+  	<dependency>
+  		<groupId>a3.exia</groupId>
+  		<artifactId>MadMax.model</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>a3.exia</groupId>
+  		<artifactId>MadMax.view</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>

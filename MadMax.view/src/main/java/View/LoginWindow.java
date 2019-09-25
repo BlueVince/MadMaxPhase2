@@ -23,7 +23,7 @@ import javax.swing.UIManager;
 import java.awt.Window.Type;
 import java.awt.Toolkit;
 
-public class Fenetre extends JFrame implements ActionListener {
+public class LoginWindow extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JTextField tf1;
@@ -34,26 +34,39 @@ public class Fenetre extends JFrame implements ActionListener {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Fenetre frame = new Fenetre();
-					frame.setUndecorated(true);
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Window frame = new Window();
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
+	
+	public LoginWindow() {
+		this.init();
+		
+		this.getBtn1().addActionListener(this);
+	}
+	
+	public LoginWindow(ActionListener listener) {
+		this.init();
+		
+		if (listener == null) {
+			listener = this;
+		}
+		
+		this.getBtn1().addActionListener(listener);
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Fenetre() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Fenetre.class.getResource("/View/Image/decrypt.png")));
+	private void init() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/View/Image/decrypt.png")));
 		setTitle("Sign in");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 626, 442);
@@ -123,7 +136,17 @@ public class Fenetre extends JFrame implements ActionListener {
 		);
 		panel.setLayout(gl_panel);
 		
-		this.getBtn1().addActionListener(this);
+		this.setUndecorated(true);
+		this.setVisible(true);
+		this.setLocationRelativeTo(null);
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		Object source = e.getSource();
+		
+		if (source == this.getBtn1()) {
+			System.out.println(this.getTf1().getText() + " | " + String.valueOf(getP1().getPassword()));
+		}
 	}
 	
 	public JTextField getTf1() {
@@ -148,14 +171,7 @@ public class Fenetre extends JFrame implements ActionListener {
 
 	public void setBtn1(JButton btn1) {
 		this.btn1 = btn1;
-	}      
-	
-	public void actionPerformed(ActionEvent e) {
-		Object source = e.getSource();
-		
-		if (source == this.getBtn1()) {
-			System.out.println(this.getTf1().getText() + " | " + String.valueOf(getP1().getPassword()));
-		}
 	}
+	
 }
 
