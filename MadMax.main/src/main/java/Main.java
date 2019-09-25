@@ -2,13 +2,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import DAO.DAO;
 import Model.User;
+import View.Fenetre;
 import View.LoginForm;
 
 @SuppressWarnings("unused")
 public class Main {
 
 	public static void main(String[] args) {
-		LoginForm loginView = new LoginForm();
+		Fenetre loginView = new Fenetre();
 		
 		/*
 		ArrayList<User> users = new ArrayList<User>();
