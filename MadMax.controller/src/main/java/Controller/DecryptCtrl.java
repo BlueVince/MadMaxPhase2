@@ -3,7 +3,6 @@ package Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import View.DecryptWindow;
-import View.LoginWindow;
 
 public class DecryptCtrl implements ActionListener {
 
