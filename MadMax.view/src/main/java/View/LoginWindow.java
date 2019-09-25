@@ -22,6 +22,8 @@ import java.awt.Font;
 import javax.swing.UIManager;
 import java.awt.Window.Type;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class LoginWindow extends JFrame implements ActionListener {
 
@@ -30,6 +32,7 @@ public class LoginWindow extends JFrame implements ActionListener {
 	private JPasswordField p1;
 	private JButton btn1;
 	private JPanel panel;
+	private JLabel lblX;
 
 	/**
 	 * Launch the application.
@@ -68,7 +71,7 @@ public class LoginWindow extends JFrame implements ActionListener {
 	private void init() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/View/Image/decrypt.png")));
 		setTitle("Sign in");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 626, 442);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
@@ -78,13 +81,15 @@ public class LoginWindow extends JFrame implements ActionListener {
 		
 		panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(311, 0, 313, 426);
+		panel.setBounds(311, 0, 315, 442);
 		contentPane.add(panel);
 		
 		tf1 = new JTextField();
+		tf1.setBounds(33, 148, 251, 31);
 		tf1.setColumns(10);
 		
 		JLabel lblUsername = new JLabel("Username");
+		lblUsername.setBounds(33, 114, 210, 23);
 		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblUsername.setForeground(new Color(65, 105, 225));
 		lblUsername.setBackground(Color.BLACK);
@@ -92,51 +97,41 @@ public class LoginWindow extends JFrame implements ActionListener {
 		
 		
 		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setBounds(33, 190, 251, 26);
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblPassword.setForeground(new Color(65, 105, 225));
 		
 		p1 = new JPasswordField();
+		p1.setBounds(33, 227, 251, 32);
 		p1.setColumns(10);
 		
 		this.setBtn1(new JButton("Se connecter"));
 		btn1.setForeground(Color.WHITE);
 		btn1.setBackground(new Color(65, 105, 225));
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(27)
-					.addComponent(lblUsername, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(27)
-					.addComponent(tf1, GroupLayout.PREFERRED_SIZE, 251, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(27)
-					.addComponent(lblPassword, GroupLayout.PREFERRED_SIZE, 251, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(27)
-					.addComponent(p1, GroupLayout.PREFERRED_SIZE, 251, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(78)
-					.addComponent(btn1, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(99)
-					.addComponent(lblUsername, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-					.addGap(11)
-					.addComponent(tf1, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-					.addGap(11)
-					.addComponent(lblPassword, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-					.addGap(11)
-					.addComponent(p1, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-					.addGap(28)
-					.addComponent(btn1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-		);
-		panel.setLayout(gl_panel);
 		
-//		this.setUndecorated(true);
+		lblX = new JLabel("X");
+		lblX.addMouseListener(new MouseAdapter() {
+			
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		lblX.setBounds(282, 11, 23, 32);
+		lblX.setForeground(Color.RED);
+		lblX.setFont(new Font("Verdana", Font.BOLD, 30));
+		panel.setLayout(null);
+		panel.add(lblPassword);
+		panel.add(p1);
+		panel.add(btn1);
+		panel.add(lblUsername);
+		panel.add(tf1);
+		panel.add(lblX);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(LoginWindow.class.getResource("/View/Image/decrypt.png")));
+		label.setBounds(33, 0, 247, 403);
+		contentPane.add(label);
+		
+		this.setUndecorated(true);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 	}
@@ -171,7 +166,7 @@ public class LoginWindow extends JFrame implements ActionListener {
 
 	public void setBtn1(JButton btn1) {
 		this.btn1 = btn1;
+		btn1.setBounds(84, 287, 159, 40);
 	}
-	
 }
 
