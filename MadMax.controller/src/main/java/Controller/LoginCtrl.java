@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import View.LoginWindow;
 import DAO.DAO;
 import Model.User;
-import java.awt.Window;
 
 public class LoginCtrl implements ActionListener {
 
@@ -44,7 +43,10 @@ public class LoginCtrl implements ActionListener {
 			
 			if (userIsValid) {
 				System.out.println("user valid");
+				
 				this.getView().setVisible(false);
+				
+				@SuppressWarnings("unused")
 				DecryptCtrl decryptCtrl = new DecryptCtrl();
 			}
 			else {

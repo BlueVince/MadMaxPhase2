@@ -1,8 +1,8 @@
 package Model;
 
-public class Crypt {
+public abstract class Crypt {
 	
-	public String encrypt(String str, String key) {
+	public static String encrypt(String str, String key) {
 		String res = "";
 		char c1, c2, c3 = '0';
 		int i = 0;

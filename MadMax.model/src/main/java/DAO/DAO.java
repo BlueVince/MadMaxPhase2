@@ -26,6 +26,9 @@ public abstract class DAO extends AbstractDAO {
     /** The sql stored procedure to add a user. */
     private static String sqlAddUser	= "{call addUser(?, ?)}";
 
+    /** The sql stored procedure to find the number of contained words. */
+    private static String sqlContainedWords	= "{call containedWords(?)}";
+
 
     /**
      * Gets the User by id.
@@ -116,5 +119,27 @@ public abstract class DAO extends AbstractDAO {
             result.close();
         }
         return usr;
+    }
+
+    /**
+     * Add Users.
+     *
+     * @return The User Added
+     * @throws SQLException
+     *             the SQL exception
+     */
+    public static int containedWords(String text) throws SQLException {
+        final CallableStatement callStatement = prepareCall(sqlContainedWords);
+        int count = 0;
+
+        callStatement.setString(1, text);
+        if (callStatement.execute()) {
+            final ResultSet result = callStatement.getResultSet();
+            if (result.first()) {
+                count = result.getInt(1);
+            }
+            result.close();
+        }
+        return count;
     }
 }

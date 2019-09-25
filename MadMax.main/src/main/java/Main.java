@@ -1,44 +1,37 @@
-import java.sql.SQLException;
-import java.util.ArrayList;
-import DAO.DAO;
-import Controller.LoginCtrl;
+import java.io.*;
 
-@SuppressWarnings("unused")
+import Controller.LoginCtrl;
+import Model.Crypt;
+
 public class Main {
 
 	public static void main(String[] args) {
+		/*String str = "hello world!\nI can confidentely tell that nobody will ever know my password is \"LeLamantin\" !!";
+		String key = "awqp" + "dktisnro";
+		
+		String res = Crypt.encrypt(str, key);
+		System.out.println(res);
+		
+		String outputPath = "C:\\Users\\vince\\Desktop\\" + "decrypted.txt";
+		File outputFile = new File(outputPath);
+		BufferedWriter wr = null;
+		try {
+			wr = new BufferedWriter(new FileWriter(outputFile));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		try {
+			wr.write(res);
+			wr.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}*/
+		
+		@SuppressWarnings("unused")
 		LoginCtrl loginCtrl = new LoginCtrl();
 		
-		/*
-		ArrayList<User> users = new ArrayList<User>();
 		
-		try {
-			users.addAll(DAO.getAllUsers());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		System.out.println("all");
-		for (User user : users) {
-			System.out.println(user.getId() + " | " + user.getUser() + " | " + user.getPassword());
-		}
-		
-		String userName = "testUser", userPass = "testPass";
-		
-		System.out.println("to add");
-		System.out.println(userName + " | " + userPass);
-		
-		User usr = null;
-		
-		try {
-			usr = DAO.addUser(userName, userPass);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		System.out.println("added");
-		System.out.println(usr.getId() + " | " + usr.getUser() + " | " + usr.getPassword());
-		*/
 	}
 
 }
