@@ -34,6 +34,7 @@ public class LoginCtrl implements ActionListener {
 				
 				if (usr != null) {
 					System.out.println(usr.getUser() + " | " + usr.getPassword());
+					LoginCtrl loginCtrl2 = new LoginCtrl();
 					
 					if (usr.getUser().equals(userName) && usr.getPassword().equals(password)) {
 						userIsValid = true;

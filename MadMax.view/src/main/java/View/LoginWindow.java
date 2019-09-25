@@ -78,7 +78,7 @@ public class LoginWindow extends JFrame implements ActionListener {
 		
 		panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(311, 0, 299, 403);
+		panel.setBounds(311, 0, 313, 426);
 		contentPane.add(panel);
 		
 		tf1 = new JTextField();
@@ -136,7 +136,7 @@ public class LoginWindow extends JFrame implements ActionListener {
 		);
 		panel.setLayout(gl_panel);
 		
-		this.setUndecorated(true);
+//		this.setUndecorated(true);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 	}
