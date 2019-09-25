@@ -12,5 +12,15 @@
   		<artifactId>MadMax.model</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
+  	<dependency>
+  		<groupId>a3.exia</groupId>
+  		<artifactId>MadMax.view</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>a3.exia</groupId>
+  		<artifactId>MadMax.controller</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
   </dependencies>
 </project>

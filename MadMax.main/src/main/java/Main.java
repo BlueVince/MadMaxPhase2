@@ -2,10 +2,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import DAO.DAO;
 import Model.User;
+import View.LoginForm;
 
+@SuppressWarnings("unused")
 public class Main {
 
 	public static void main(String[] args) {
+		LoginForm loginView = new LoginForm();
+		
+		/*
 		ArrayList<User> users = new ArrayList<User>();
 		
 		try {
@@ -34,6 +39,7 @@ public class Main {
 		
 		System.out.println("added");
 		System.out.println(usr.getId() + " | " + usr.getUser() + " | " + usr.getPassword());
+		*/
 	}
 
 }
