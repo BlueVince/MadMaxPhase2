@@ -25,13 +25,9 @@ import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class LoginWindow extends JFrame {
+public class DecryptWindow extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
-	private JTextField tf1;
-	private JPasswordField p1;
-	private JButton btn1;
-	private JPanel panel;
 	private JLabel lblX;
 
 	/**
@@ -49,26 +45,25 @@ public class LoginWindow extends JFrame {
 //		});
 //	}
 	
-	public LoginWindow() {
+	public DecryptWindow() {
 		this.init();
-		
 	}
 	
-	public LoginWindow(ActionListener listener) {
+	public DecryptWindow(ActionListener listener) {
 		this.init();
 		
-		if (listener != null) {
-			this.getBtn1().addActionListener(listener);
+		if (listener == null) {
+			listener = this;
 		}
 		
-
+		this.getBtn1().addActionListener(listener);
 	}
 
 	/**
 	 * Create the frame.
 	 */
 	private void init() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/View/Image/decrypt.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DecryptWindow.class.getResource("/View/Image/decrypt.png")));
 		setTitle("Sign in");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 626, 442);
@@ -78,65 +73,46 @@ public class LoginWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		panel = new JPanel();
-		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(311, 0, 315, 442);
-		contentPane.add(panel);
-		
-		tf1 = new JTextField();
-		tf1.setBounds(33, 148, 251, 31);
-		tf1.setColumns(10);
-		
-		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setBounds(33, 114, 210, 23);
-		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblUsername.setForeground(new Color(65, 105, 225));
-		lblUsername.setBackground(Color.BLACK);
-		
-		
-		
-		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(33, 190, 251, 26);
-		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblPassword.setForeground(new Color(65, 105, 225));
-		
-		p1 = new JPasswordField();
-		p1.setBounds(33, 227, 251, 32);
-		p1.setColumns(10);
-		
-		this.setBtn1(new JButton("Se connecter"));
-		btn1.setForeground(Color.WHITE);
-		btn1.setBackground(new Color(65, 105, 225));
-		
-		lblX = new JLabel("X");
-		lblX.addMouseListener(new MouseAdapter() {
-			
-			public void mouseClicked(MouseEvent e) {
-				System.exit(0);;
-			}
-		});
-		
-		lblX.setBounds(282, 11, 23, 32);
-		lblX.setForeground(Color.RED);
-		lblX.setFont(new Font("Verdana", Font.BOLD, 30));
-		panel.setLayout(null);
-		panel.add(lblPassword);
-		panel.add(p1);
-		panel.add(btn1);
-		panel.add(lblUsername);
-		panel.add(tf1);
-		panel.add(lblX);
-		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(LoginWindow.class.getResource("/View/Image/decrypt.png")));
 		label.setBounds(33, 0, 247, 442);
+		label.setIcon(new ImageIcon(DecryptWindow.class.getResource("/View/Image/decrypt.png")));
 		contentPane.add(label);
+		
+		JButton btnBrowse = new JButton("Browse...");
+		btnBrowse.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnBrowse.setForeground(Color.WHITE);
+		btnBrowse.setBackground(Color.DARK_GRAY);
+		btnBrowse.setBounds(398, 142, 143, 44);
+		contentPane.add(btnBrowse);
+		
+		JButton btnDecryptAndSave = new JButton("Decrypt and Save");
+		btnDecryptAndSave.setBackground(Color.DARK_GRAY);
+		btnDecryptAndSave.setForeground(Color.WHITE);
+		btnDecryptAndSave.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnDecryptAndSave.setBounds(398, 265, 143, 44);
+		contentPane.add(btnDecryptAndSave);
+		
+		JLabel lblX_1 = new JLabel("X");
+		lblX_1.addMouseListener(new MouseAdapter() {
+
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+			}
+			
+		});
+		lblX_1.setForeground(Color.RED);
+		lblX_1.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lblX_1.setBounds(595, 11, 21, 34);
+		contentPane.add(lblX_1);
 		
 		this.setUndecorated(true);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 	}
 	
+	public void actionPerformed(ActionEvent e) {
+		Object source = e.getSource();
+	}
 	
 	public JTextField getTf1() {
 		return tf1;
@@ -155,12 +131,9 @@ public class LoginWindow extends JFrame {
 	}
 	
 	public JButton getBtn1() {
-		return btn1;
 	}
 
 	public void setBtn1(JButton btn1) {
-		this.btn1 = btn1;
-		btn1.setBounds(84, 287, 159, 40);
 	}
 }
 
