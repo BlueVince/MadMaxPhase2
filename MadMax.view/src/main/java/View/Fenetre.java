@@ -55,42 +55,42 @@ public class Fenetre extends JFrame implements ActionListener {
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(311, 0, 299, 403);
+		panel.setLayout(null);
+		contentPane.add(panel);
+		
+		tf1 = new JTextField();
+		tf1.setBounds(27, 133, 251, 31);
+		panel.add(tf1);
+		tf1.setColumns(10);
 		
 		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setBounds(344, 104, 210, 23);
+		lblUsername.setBounds(27, 99, 210, 23);
+		panel.add(lblUsername);
 		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblUsername.setForeground(new Color(65, 105, 225));
 		lblUsername.setBackground(Color.BLACK);
 		
-		tf1 = new JTextField();
-		tf1.setBounds(344, 133, 251, 31);
-		tf1.setColumns(10);
-		
-		p1 = new JPasswordField();
-		p1.setBounds(344, 202, 251, 32);
-		p1.setColumns(10);
-		
 		
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(344, 170, 251, 26);
+		lblPassword.setBounds(27, 175, 251, 26);
+		panel.add(lblPassword);
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblPassword.setForeground(new Color(65, 105, 225));
+		
+		p1 = new JPasswordField();
+		p1.setBounds(27, 212, 251, 32);
+		panel.add(p1);
+		p1.setColumns(10);
 		
 		this.setBtn1(new JButton("Se connecter"));
 		btn1.setForeground(Color.WHITE);
 		btn1.setBackground(new Color(65, 105, 225));
-		
-		panel = new JPanel();
-		panel.setBounds(73, 202, 112, 111);
-		panel.setLayout(null);
-		contentPane.setLayout(null);
-		contentPane.add(lblPassword);
-		contentPane.add(tf1);
-		contentPane.add(lblUsername);
-		contentPane.add(panel);
-		contentPane.add(btn1);
-		contentPane.add(p1);
 		
 		this.getBtn1().addActionListener(this);
 	}
@@ -117,7 +117,8 @@ public class Fenetre extends JFrame implements ActionListener {
 
 	public void setBtn1(JButton btn1) {
 		this.btn1 = btn1;
-		btn1.setBounds(392, 245, 159, 40);
+		btn1.setBounds(78, 272, 159, 40);
+		panel.add(btn1);
 	}      
 	
 	public void actionPerformed(ActionEvent e) {
