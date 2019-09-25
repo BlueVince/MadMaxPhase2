@@ -12,7 +12,6 @@ public class LoginCtrl implements ActionListener {
 
 	private LoginWindow view;
 	
-	
 	public LoginCtrl() {
 		this.setView(new LoginWindow(this));
 	}
