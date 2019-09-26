@@ -6,13 +6,14 @@ import Model.Crypt;
 public class Main {
 
 	public static void main(String[] args) {
-		/*String str = "hello world!\nI can confidentely tell that nobody will ever know my password is \"LeLamantin\" !!";
-		String key = "awqp" + "dktisnro";
+		/*
+		String str = "hello world!\nI can confidentely tell that nobody will ever know my password is \"LeLamantin\" !!";
+		String key = "awqpmndf" + "snro";
 		
 		String res = Crypt.encrypt(str, key);
 		System.out.println(res);
 		
-		String outputPath = "C:\\Users\\vince\\Desktop\\" + "decrypted.txt";
+		String outputPath = "C:\\Users\\vince\\Desktop\\" + "crypted.txt";
 		File outputFile = new File(outputPath);
 		BufferedWriter wr = null;
 		try {
@@ -26,7 +27,8 @@ public class Main {
 			wr.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}*/
+		}
+		/**/
 		
 		@SuppressWarnings("unused")
 		LoginCtrl loginCtrl = new LoginCtrl();

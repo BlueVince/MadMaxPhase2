@@ -22,6 +22,7 @@ import View.DecryptWindow;
 public class DecryptCtrl implements ActionListener {
 
 	private DecryptWindow view;
+	private int nFile = 1;
 	
 	public DecryptCtrl() {
 		this.setView(new DecryptWindow(this));
@@ -37,8 +38,11 @@ public class DecryptCtrl implements ActionListener {
 		else if (source == this.getView().getBtnDecryptAndSave()) {
 			System.out.println("Decrypt button clicked");
 			
-			String inputPath = "C:\\Users\\vince\\Desktop\\" + "crypted.txt";
-			String outputPath = "C:\\Users\\vince\\Desktop\\" + "decrypted.txt";
+			String nFileStr = "00" + nFile;
+			nFileStr = nFileStr.substring(nFileStr.length() - 3);
+			
+			String inputPath = "C:\\Users\\vince\\Desktop\\fichiers_cryptes\\" + "fichier" + nFileStr + "crypte.txt";
+			String outputPath = "C:\\Users\\vince\\Desktop\\fichiers_decryptes\\" + "fichier" + nFileStr + "decrypte.txt";
 			
 			File inputFile = new File(inputPath);
 			File outputFile = new File(outputPath);
@@ -50,13 +54,68 @@ public class DecryptCtrl implements ActionListener {
 				rd = new BufferedReader(new FileReader(inputFile));
 				
 				ArrayList<Dictionary> dico = DAO.getWholeDictionary();
+//				ArrayList<Dictionary> dico = new ArrayList<Dictionary>();
+//				dico.add(new Dictionary(0, "hello", "english"));
+//				dico.add(new Dictionary(0, "world", "english"));
+//				dico.add(new Dictionary(0, "confidentely", "english"));
 
-				Key key = new Key("awqp", 12);
+				Key key = new Key("awqpmndf", 12);
 				
 				String bestDecryptedText = "";
 				int bestDecryptedNWords = 0;
+				String bestKey = "";
 				boolean decrypting = true;
 				
+				/**/
+				while (decrypting) {
+					String cryptedText = "", decryptedText = "", line = null;
+					
+					do {
+						line = rd.readLine();
+						
+						if (line != null) {
+							cryptedText += line + "\n";
+						}
+					} while (line != null);
+					
+					cryptedText = cryptedText.substring(0, cryptedText.length() - 1);
+					
+					decryptedText = Crypt.encrypt(cryptedText, key.getKeyString());
+					
+					int nWords = 0;
+					for (Dictionary word: dico) {
+						if (decryptedText.contains(word.getWord())) {
+							nWords++;
+						}
+					}
+					
+					if (nWords > bestDecryptedNWords) {
+						bestDecryptedText = decryptedText;
+						bestDecryptedNWords = nWords;
+						bestKey = key.getKeyString();
+						
+//						System.out.println("Decrypted text:");
+//						System.out.println(bestDecryptedText);
+//						System.out.println("Key used:" + bestKey);
+//						System.out.println("Words recognized:" + bestDecryptedNWords);
+					}
+					else {
+						System.out.println("Key used:" + key.getKeyString());
+					}
+					
+					if (!key.increment()) {
+						decrypting = false;
+					}
+					else {
+						decrypting = true;
+
+						rd.close();
+						rd = new BufferedReader(new FileReader(inputFile));
+					}
+				}
+				/**/
+				
+				/*
 				while (decrypting) {
 					String cryptedText = "", decryptedText = "", line = null;
 					
@@ -99,6 +158,7 @@ public class DecryptCtrl implements ActionListener {
 						rd = new BufferedReader(new FileReader(inputFile));
 					}
 				}
+				/**/
 				
 				if (bestDecryptedNWords > 0) {
 					if (!outputFile.exists()) {
@@ -112,8 +172,12 @@ public class DecryptCtrl implements ActionListener {
 					System.out.println("!! Best Decryption !!");
 					System.out.println("Decrypted text:");
 					System.out.println(bestDecryptedText);
-					System.out.println("Key used:" + key.getKeyString());
+					System.out.println("Key used:" + bestKey);
 					System.out.println("Words recognized:" + bestDecryptedNWords);
+					this.getView().getTextpanel().setText("!! Best Decryption !!" + "\n\n"
+						+ "Decrypted text:" + "\n" + bestDecryptedText + "\n\n"
+						+ "Key used:" + "\n" + bestKey + "\n\n"
+						+ "Words recognized:" + "\n" + bestDecryptedNWords);
 				}
 				
 				if (rd != null)
@@ -127,6 +191,9 @@ public class DecryptCtrl implements ActionListener {
 				e1.printStackTrace();
 			}
 		}
+		
+
+		this.nFile++;
 	}
 
 	private DecryptWindow getView() {
