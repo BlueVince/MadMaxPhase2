@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import Model.Dictionary;
 import Model.User;
 
 /**
@@ -28,6 +30,9 @@ public abstract class DAO extends AbstractDAO {
 
     /** The sql stored procedure to find the number of contained words. */
     private static String sqlContainedWords	= "{call containedWords(?)}";
+
+    /** The sql stored procedure to find the number of contained words. */
+    private static String sqlGetWholeDictionary	= "{call getWholeDictionary()}";
 
 
     /**
@@ -122,7 +127,7 @@ public abstract class DAO extends AbstractDAO {
     }
 
     /**
-     * Add Users.
+     * Get the number of contained words.
      *
      * @return The User Added
      * @throws SQLException
@@ -142,4 +147,27 @@ public abstract class DAO extends AbstractDAO {
         }
         return count;
     }
+
+    /**
+     * Get all the words in the dictionary.
+     *
+     * @return The number of words
+     * @throws SQLException
+     *             the SQL exception
+     */
+    public static ArrayList<Dictionary> getWholeDictionary() throws SQLException {
+        final CallableStatement callStatement = prepareCall(sqlGetWholeDictionary);
+        ArrayList<Dictionary> words = new ArrayList<Dictionary>();
+
+        if (callStatement.execute()) {
+            final ResultSet result = callStatement.getResultSet();
+
+            for (boolean isResultLeft = result.first(); isResultLeft; isResultLeft = result.next()) {
+            	words.add(new Dictionary(result.getInt(1), result.getString(2), result.getString(2)));
+            }
+            result.close();
+        }
+        return words;
+    }
+    
 }

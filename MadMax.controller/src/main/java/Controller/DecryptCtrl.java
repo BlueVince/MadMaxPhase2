@@ -11,9 +11,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import DAO.DAO;
 import Model.Crypt;
+import Model.Dictionary;
 import Model.Key;
 import View.DecryptWindow;
 
@@ -46,11 +48,13 @@ public class DecryptCtrl implements ActionListener {
 			try {
 
 				rd = new BufferedReader(new FileReader(inputFile));
+				
+				ArrayList<Dictionary> dico = DAO.getWholeDictionary();
 
 				Key key = new Key("awqp", 12);
 				
 				String bestDecryptedText = "";
-				int bestDecryptedWords = 0;
+				int bestDecryptedNWords = 0;
 				boolean decrypting = true;
 				
 				while (decrypting) {
@@ -68,16 +72,21 @@ public class DecryptCtrl implements ActionListener {
 					
 					decryptedText = Crypt.encrypt(cryptedText, key.getKeyString());
 					
-					int words = DAO.containedWords(decryptedText);
+					int nWords = 0;
+					for (Dictionary word: dico) {
+						if (decryptedText.contains(word.getWord())) {
+							nWords++;
+						}
+					}
 					
-					if (words > bestDecryptedWords) {
+					if (nWords > bestDecryptedNWords) {
 						bestDecryptedText = decryptedText;
-						bestDecryptedWords = words;
+						bestDecryptedNWords = nWords;
 						
 						System.out.println("Decrypted text:");
 						System.out.println(bestDecryptedText);
 						System.out.println("Key used:" + key.getKeyString());
-						System.out.println("Words recognized:" + bestDecryptedWords);
+						System.out.println("Words recognized:" + bestDecryptedNWords);
 					}
 					
 					if (!key.increment()) {
@@ -91,7 +100,7 @@ public class DecryptCtrl implements ActionListener {
 					}
 				}
 				
-				if (bestDecryptedWords > 0) {
+				if (bestDecryptedNWords > 0) {
 					if (!outputFile.exists()) {
 						outputFile.createNewFile();
 					}
@@ -104,7 +113,7 @@ public class DecryptCtrl implements ActionListener {
 					System.out.println("Decrypted text:");
 					System.out.println(bestDecryptedText);
 					System.out.println("Key used:" + key.getKeyString());
-					System.out.println("Words recognized:" + bestDecryptedWords);
+					System.out.println("Words recognized:" + bestDecryptedNWords);
 				}
 				
 				if (rd != null)
