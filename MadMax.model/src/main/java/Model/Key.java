@@ -10,8 +10,8 @@ public class Key {
 	public Key() {
 		this.setKey(new char[this.length]);
 		
-		this.minIndex = 0;
-		this.maxIndex = this.length - 1;
+		this.setMinIndex(0);
+		this.setMaxIndex(this.length - 1);
 		
 		for (int i = 0; i < this.getKey().length; i++) {
 			this.getKey()[i] = 'a';
@@ -19,12 +19,12 @@ public class Key {
 	}
 
 	public Key(Key key) {
-		this.length = key.getKey().length;
+		this.setLength(key.getKey().length);
 		
 		this.setKey(new char[this.length]);
 		
-		this.minIndex = 0;
-		this.maxIndex = this.length - 1;
+		this.setMinIndex(0);
+		this.setMaxIndex(this.length - 1);
 		
 		for (int i = 0; i < this.getKey().length; i++) {
 			this.getKey()[i] = key.getKey()[i];
@@ -32,12 +32,12 @@ public class Key {
 	}
 
 	public Key(int length) {
-		this.length = length;
+		this.setLength(length);
 		
 		this.setKey(new char[this.length]);
 		
-		this.minIndex = 0;
-		this.maxIndex = this.length - 1;
+		this.setMinIndex(0);
+		this.setMaxIndex(this.length - 1);
 		
 		for (int i = 0; i < this.getKey().length; i++) {
 			this.getKey()[i] = 'a';
@@ -48,18 +48,18 @@ public class Key {
 		keyPart = keyPart.toLowerCase();
 		
 		if (keyPart.length() > this.length) {
-			this.length = keyPart.length();
+			this.setLength(keyPart.length());
 		}
 		
-		this.setKey(new char[this.length]);
+		this.setKey(new char[this.getLength()]);
 		
-		this.minIndex = keyPart.length();
-		this.maxIndex = this.length - 1;
+		this.setMinIndex(keyPart.length());
+		this.setMaxIndex(this.getLength() - 1);
 
-		for (int i = 0; i < this.minIndex; i++) {
+		for (int i = 0; i < this.getMinIndex(); i++) {
 			this.getKey()[i] = keyPart.charAt(i);
 		}
-		for (int i = this.minIndex; i <= this.maxIndex; i++) {
+		for (int i = this.getMinIndex(); i <= this.getMaxIndex(); i++) {
 			this.getKey()[i] = 'a';
 		}
 	}
@@ -71,23 +71,23 @@ public class Key {
 			length = keyPart.length();
 		}
 		
-		this.length = length;
+		this.setLength(length);
 		
-		this.setKey(new char[this.length]);
+		this.setKey(new char[this.getLength()]);
 		
-		this.minIndex = keyPart.length();
-		this.maxIndex = this.length - 1;
+		this.setMinIndex(keyPart.length());
+		this.setMaxIndex(this.getLength() - 1);
 
-		for (int i = 0; i < this.minIndex; i++) {
+		for (int i = 0; i < this.getMinIndex(); i++) {
 			this.getKey()[i] = keyPart.charAt(i);
 		}
-		for (int i = this.minIndex; i <= this.maxIndex; i++) {
+		for (int i = this.getMinIndex(); i <= this.getMaxIndex(); i++) {
 			this.getKey()[i] = 'a';
 		}
 	}
 	
 	public boolean increment() {
-		int varLength = this.maxIndex - this.minIndex + 1;
+		int varLength = this.getMaxIndex() - this.getMinIndex() + 1;
 		
 		if (varLength == 0) {
 			return false;
@@ -96,7 +96,7 @@ public class Key {
 		char[] varKey = new char[varLength];
 		
 		for (int i = 0; i < varKey.length; i++) {
-			varKey[i] = this.getKey()[this.minIndex + i];
+			varKey[i] = this.getKey()[this.getMinIndex() + i];
 		}
 		
 		boolean incremented = false;
@@ -118,7 +118,7 @@ public class Key {
 		
 		if (incremented) {
 			for (int i = 0; i < varKey.length; i++) {
-				this.getKey()[this.minIndex + i] = varKey[i];
+				this.getKey()[this.getMinIndex() + i] = varKey[i];
 			}
 			
 			return true;
@@ -129,7 +129,7 @@ public class Key {
 	}
 	
 	public boolean incrementChar(int index) {
-		if (index >= this.minIndex && index <= this.maxIndex) {
+		if (index >= this.getMinIndex() && index <= this.getMaxIndex()) {
 			return false;
 		}
 		
@@ -153,6 +153,30 @@ public class Key {
 
 	private void setKey(char[] key) {
 		this.key = key;
+	}
+	
+	public int getLength() {
+		return this.length;
+	}
+
+	private void setLength(int length) {
+		this.length = length;
+	}
+	
+	public int getMinIndex() {
+		return this.minIndex;
+	}
+
+	private void setMinIndex(int minIndex) {
+		this.minIndex = minIndex;
+	}
+	
+	public int getMaxIndex() {
+		return this.maxIndex;
+	}
+
+	private void setMaxIndex(int maxIndex) {
+		this.maxIndex = maxIndex;
 	}
 
 }
