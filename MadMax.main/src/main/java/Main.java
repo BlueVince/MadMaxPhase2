@@ -7,13 +7,25 @@ public class Main {
 
 	public static void main(String[] args) {
 		/*
-		String str = "hello world!\nI can confidentely tell that nobody will ever know my password is \"LeLamantin\" !!";
-		String key = "awqpmndf" + "snro";
+		String inputPath = "C:\\Users\\vince\\Desktop\\" + "manual_crypted.txt";
+		File inputFile = new File(inputPath);
+		BufferedReader rd = null;
+		
+		String str = "";
+		String key = "awqpmndfgtej";
+		
+		try {
+			rd = new BufferedReader(new FileReader(inputFile));
+			str = rd.readLine();
+			rd.close();
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
 		
 		String res = Crypt.encrypt(str, key);
 		System.out.println(res);
 		
-		String outputPath = "C:\\Users\\vince\\Desktop\\" + "crypted.txt";
+		String outputPath = "C:\\Users\\vince\\Desktop\\" + "manual_decrypted.txt";
 		File outputFile = new File(outputPath);
 		BufferedWriter wr = null;
 		try {

@@ -31,8 +31,11 @@ public abstract class DAO extends AbstractDAO {
     /** The sql stored procedure to find the number of contained words. */
     private static String sqlContainedWords	= "{call containedWords(?)}";
 
-    /** The sql stored procedure to find the number of contained words. */
+    /** The sql stored procedure to get all the words. */
     private static String sqlGetWholeDictionary	= "{call getWholeDictionary()}";
+
+    /** The sql stored procedure to get all the words of a language. */
+    private static String sqlGetWholeDictionaryForLanguage	= "{call getWholeDictionaryForLanguage(?)}";
 
 
     /**
@@ -151,7 +154,7 @@ public abstract class DAO extends AbstractDAO {
     /**
      * Get all the words in the dictionary.
      *
-     * @return The number of words
+     * @return The words
      * @throws SQLException
      *             the SQL exception
      */
@@ -159,6 +162,29 @@ public abstract class DAO extends AbstractDAO {
         final CallableStatement callStatement = prepareCall(sqlGetWholeDictionary);
         ArrayList<Dictionary> words = new ArrayList<Dictionary>();
 
+        if (callStatement.execute()) {
+            final ResultSet result = callStatement.getResultSet();
+
+            for (boolean isResultLeft = result.first(); isResultLeft; isResultLeft = result.next()) {
+            	words.add(new Dictionary(result.getInt(1), result.getString(2), result.getString(2)));
+            }
+            result.close();
+        }
+        return words;
+    }
+
+    /**
+     * Get all the words in the dictionary for a language.
+     *
+     * @return The words
+     * @throws SQLException
+     *             the SQL exception
+     */
+    public static ArrayList<Dictionary> getWholeDictionaryForLanguage(String language) throws SQLException {
+        final CallableStatement callStatement = prepareCall(sqlGetWholeDictionaryForLanguage);
+        ArrayList<Dictionary> words = new ArrayList<Dictionary>();
+
+        callStatement.setString(1, language);
         if (callStatement.execute()) {
             final ResultSet result = callStatement.getResultSet();
 

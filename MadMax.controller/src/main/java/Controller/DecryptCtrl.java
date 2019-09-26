@@ -53,7 +53,7 @@ public class DecryptCtrl implements ActionListener {
 
 				rd = new BufferedReader(new FileReader(inputFile));
 				
-				ArrayList<Dictionary> dico = DAO.getWholeDictionary();
+				ArrayList<Dictionary> dico = DAO.getWholeDictionaryForLanguage("french");
 //				ArrayList<Dictionary> dico = new ArrayList<Dictionary>();
 //				dico.add(new Dictionary(0, "hello", "english"));
 //				dico.add(new Dictionary(0, "world", "english"));
@@ -86,7 +86,7 @@ public class DecryptCtrl implements ActionListener {
 					
 					int nWords = 0;
 					for (Dictionary word: dico) {
-						if (decryptedText.contains(word.getWord())) {
+						if (decryptedText.contains(" " + word.getWord()) || decryptedText.contains(word.getWord() + " ")) {
 							nWords++;
 						}
 					}
