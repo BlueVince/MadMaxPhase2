@@ -39,6 +39,7 @@ public class DecryptWindow extends JFrame implements ActionListener{
 	private JLabel lblX_1;
 	private JButton BtnBrowse, BtnDecryptAndSave;
 	private JPanel panel;
+	private JTextPane textpanel;
 
 	/**
 	 * Launch the application.
@@ -145,9 +146,9 @@ public class DecryptWindow extends JFrame implements ActionListener{
 					.addContainerGap())
 		);
 		
-		JTextPane textpanel = new JTextPane();
-		textpanel.setText("teststetuyzdgkjd");
-		scrollPane.setViewportView(textpanel);
+		this.setTextpanel(new JTextPane());
+		this.getTextpanel().setText("teststetuyzdgkjd");
+		scrollPane.setViewportView(this.getTextpanel());
 		panel.setLayout(gl_panel);
 		
 		this.setUndecorated(true);
@@ -189,6 +190,14 @@ public class DecryptWindow extends JFrame implements ActionListener{
 					e1.printStackTrace();
 				}
 		}
+	}
+
+	public JTextPane getTextpanel() {
+		return textpanel;
+	}
+
+	public void setTextpanel(JTextPane textpanel) {
+		this.textpanel = textpanel;
 	}
 	
 }
