@@ -14,7 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.Color;
+import java.awt.Desktop;
+
 import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
@@ -24,6 +28,8 @@ import java.awt.Window.Type;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
@@ -168,5 +174,19 @@ public class DecryptWindow extends JFrame {
 	public void setBtnDecryptAndSave(JButton btnDecryptAndSave) {
 		BtnDecryptAndSave = btnDecryptAndSave;
 	}
+
+	public void actionPerformed(ActionEvent e) {
+	    /* init du filechooser */
+	    JFileChooser fc = new JFileChooser();
+	    /* affichage du dialog et test si le bouton ok est pressé */
+	    if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION)
+	      try {
+	        /* demande au système d'ouvrir le fichier précédemment séléctionné */
+	        Desktop.getDesktop().open(fc.getSelectedFile());
+	      } catch (IOException e1) {
+	        e1.printStackTrace();
+	      }
+	  }
+	
 }
 
