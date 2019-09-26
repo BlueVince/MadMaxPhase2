@@ -66,6 +66,8 @@ public class DecryptCtrl implements ActionListener {
 				String bestKey = "";
 				boolean decrypting = true;
 				
+				String outputStr = "";
+				
 				/**/
 				while (decrypting) {
 					String cryptedText = "", decryptedText = "", line = null;
@@ -98,6 +100,11 @@ public class DecryptCtrl implements ActionListener {
 //						System.out.println(bestDecryptedText);
 //						System.out.println("Key used:" + bestKey);
 //						System.out.println("Words recognized:" + bestDecryptedNWords);
+						
+						outputStr += "Decrypted text:" + "\n" + bestDecryptedText + "\n\n"
+								+ "Key used:" + "\n" + bestKey + "\n\n"
+								+ "Words recognized:" + "\n" + bestDecryptedNWords
+								+ "\n----------------\n";
 					}
 					else {
 						System.out.println("Key used:" + key.getKeyString());
@@ -174,11 +181,13 @@ public class DecryptCtrl implements ActionListener {
 					System.out.println(bestDecryptedText);
 					System.out.println("Key used:" + bestKey);
 					System.out.println("Words recognized:" + bestDecryptedNWords);
-					this.getView().getTextpanel().setText("!! Best Decryption !!" + "\n\n"
-						+ "Decrypted text:" + "\n" + bestDecryptedText + "\n\n"
-						+ "Key used:" + "\n" + bestKey + "\n\n"
-						+ "Words recognized:" + "\n" + bestDecryptedNWords);
+					outputStr += "!! Best Decryption !!" + "\n\n"
+							+ "Decrypted text:" + "\n" + bestDecryptedText + "\n\n"
+							+ "Key used:" + "\n" + bestKey + "\n\n"
+							+ "Words recognized:" + "\n" + bestDecryptedNWords;
 				}
+				
+				this.getView().getTextpanel().setText(outputStr);
 				
 				if (rd != null)
 					rd.close();
