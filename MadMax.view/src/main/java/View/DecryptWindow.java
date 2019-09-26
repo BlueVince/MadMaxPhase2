@@ -98,7 +98,7 @@ public class DecryptWindow extends JFrame {
 		
 		panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(318, 0, 308, 442);
+		panel.setBounds(312, 0, 314, 442);
 		contentPane.add(panel);
 		
 		this.setBtnBrowse(new JButton("Browse..."));
