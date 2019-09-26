@@ -33,7 +33,7 @@ import java.io.IOException;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
-public class DecryptWindow extends JFrame {
+public class DecryptWindow extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 	private JLabel lblX_1;
@@ -63,7 +63,7 @@ public class DecryptWindow extends JFrame {
 		this.init();
 		
 		if (listener != null) {
-			this.getBtnBrowse().addActionListener(listener);
+			this.getBtnBrowse().addActionListener(this);
 			this.getBtnDecryptAndSave().addActionListener(listener);
 		}
 		
@@ -145,9 +145,9 @@ public class DecryptWindow extends JFrame {
 					.addContainerGap())
 		);
 		
-		JTextPane txtpnWcvwfqsqcfdsv = new JTextPane();
-		txtpnWcvwfqsqcfdsv.setText("Le col de Bussang est l'un des cols les plus fr\u00E9quent\u00E9s du massif des Vosges. Situ\u00E9 dans la r\u00E9gion Grand Est et s'\u00E9levant \u00E0 731 m, il relie la Lorraine et l'Alsace par la route nationale 66 (\u00E9galement route europ\u00E9enne 512). Les deux communes de ce col dans un socle s\u00E9dimentaire friable et cassant sont Bussang du c\u00F4t\u00E9 lorrain et Urb\u00E8s du c\u00F4t\u00E9 alsacien. Le passage des cr\u00EAtes \u00E0 hauteur de Bussang fait partie des principaux cols historiques qui traversent les Vosges depuis l\u2019Antiquit\u00E9 aux c\u00F4t\u00E9s du col du Bonhomme, du col du Donon et du col de Saverne.");
-		scrollPane.setViewportView(txtpnWcvwfqsqcfdsv);
+		JTextPane textpanel = new JTextPane();
+		textpanel.setText("teststetuyzdgkjd");
+		scrollPane.setViewportView(textpanel);
 		panel.setLayout(gl_panel);
 		
 		this.setUndecorated(true);
@@ -176,17 +176,20 @@ public class DecryptWindow extends JFrame {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-	    /* init du filechooser */
-	    JFileChooser fc = new JFileChooser();
-	    /* affichage du dialog et test si le bouton ok est pressé */
-	    if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION)
-	      try {
-	        /* demande au système d'ouvrir le fichier précédemment séléctionné */
-	        Desktop.getDesktop().open(fc.getSelectedFile());
-	      } catch (IOException e1) {
-	        e1.printStackTrace();
-	      }
-	  }
+		Object Source = e.getSource();
+		if (Source == this.getBtnBrowse()) {
+			/* init du filechooser */
+			JFileChooser fc = new JFileChooser();
+			/* affichage du dialog et test si le bouton ok est pressé */
+			if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION)
+				try {
+					/* demande au système d'ouvrir le fichier précédemment séléctionné */
+					Desktop.getDesktop().open(fc.getSelectedFile());
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+		}
+	}
 	
 }
 
