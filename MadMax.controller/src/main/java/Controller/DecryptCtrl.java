@@ -22,7 +22,6 @@ import View.DecryptWindow;
 public class DecryptCtrl implements ActionListener {
 
 	private DecryptWindow view;
-	private int nFile = 1;
 	
 	public DecryptCtrl() {
 		this.setView(new DecryptWindow(this));
@@ -68,7 +67,6 @@ public class DecryptCtrl implements ActionListener {
 				
 				String outputStr = "";
 				
-				/**/
 				while (decrypting) {
 					String cryptedText = "", decryptedText = "", line = null;
 					
@@ -96,11 +94,6 @@ public class DecryptCtrl implements ActionListener {
 						bestDecryptedNWords = nWords;
 						bestKey = key.getKeyString();
 						
-//						System.out.println("Decrypted text:");
-//						System.out.println(bestDecryptedText);
-//						System.out.println("Key used:" + bestKey);
-//						System.out.println("Words recognized:" + bestDecryptedNWords);
-						
 						outputStr += "Decrypted text:" + "\n" + bestDecryptedText + "\n\n"
 								+ "Key used:" + "\n" + bestKey + "\n\n"
 								+ "Words recognized:" + "\n" + bestDecryptedNWords
@@ -120,52 +113,6 @@ public class DecryptCtrl implements ActionListener {
 						rd = new BufferedReader(new FileReader(inputFile));
 					}
 				}
-				/**/
-				
-				/*
-				while (decrypting) {
-					String cryptedText = "", decryptedText = "", line = null;
-					
-					do {
-						line = rd.readLine();
-						
-						if (line != null) {
-							cryptedText += line + "\n";
-						}
-					} while (line != null);
-					
-					cryptedText = cryptedText.substring(0, cryptedText.length() - 1);
-					
-					decryptedText = Crypt.encrypt(cryptedText, key.getKeyString());
-					
-					int nWords = 0;
-					for (Dictionary word: dico) {
-						if (decryptedText.contains(word.getWord())) {
-							nWords++;
-						}
-					}
-					
-					if (nWords > bestDecryptedNWords) {
-						bestDecryptedText = decryptedText;
-						bestDecryptedNWords = nWords;
-						
-						System.out.println("Decrypted text:");
-						System.out.println(bestDecryptedText);
-						System.out.println("Key used:" + key.getKeyString());
-						System.out.println("Words recognized:" + bestDecryptedNWords);
-					}
-					
-					if (!key.increment()) {
-						decrypting = false;
-					}
-					else {
-						decrypting = true;
-
-						rd.close();
-						rd = new BufferedReader(new FileReader(inputFile));
-					}
-				}
-				/**/
 				
 				if (bestDecryptedNWords > 0) {
 					if (!outputFile.exists()) {
@@ -200,9 +147,6 @@ public class DecryptCtrl implements ActionListener {
 				e1.printStackTrace();
 			}
 		}
-		
-
-		this.nFile++;
 	}
 
 	private DecryptWindow getView() {
