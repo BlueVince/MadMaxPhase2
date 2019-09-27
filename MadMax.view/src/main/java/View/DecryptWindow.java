@@ -40,6 +40,7 @@ public class DecryptWindow extends JFrame implements ActionListener{
 	private JButton BtnBrowse, BtnDecryptAndSave;
 	private JPanel panel;
 	private JTextPane textpanel;
+	private JFileChooser fileChooser;
 
 	/**
 	 * Launch the application.
@@ -154,6 +155,9 @@ public class DecryptWindow extends JFrame implements ActionListener{
 		this.setUndecorated(true);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
+		
+		/* init du filechooser */
+		fileChooser = new JFileChooser();
 	}
 
 	public JButton getBtnBrowse() {
@@ -179,16 +183,17 @@ public class DecryptWindow extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Object Source = e.getSource();
 		if (Source == this.getBtnBrowse()) {
-			/* init du filechooser */
-			JFileChooser fc = new JFileChooser();
 			/* affichage du dialog et test si le bouton ok est pressé */
-			if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION)
+			if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+				/*
 				try {
-					/* demande au système d'ouvrir le fichier précédemment séléctionné */
-					Desktop.getDesktop().open(fc.getSelectedFile());
+					// demande au système d'ouvrir le fichier précédemment séléctionné
+					Desktop.getDesktop().open(fileChooser.getSelectedFile());
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
+				/**/
+			}
 		}
 	}
 
@@ -198,6 +203,14 @@ public class DecryptWindow extends JFrame implements ActionListener{
 
 	public void setTextpanel(JTextPane textpanel) {
 		this.textpanel = textpanel;
+	}
+
+	public JFileChooser getFileChooser() {
+		return this.fileChooser;
+	}
+
+	public void setTextpanel(JFileChooser fileChooser) {
+		this.fileChooser = fileChooser;
 	}
 	
 }

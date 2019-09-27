@@ -38,14 +38,19 @@ public class DecryptCtrl implements ActionListener {
 		else if (source == this.getView().getBtnDecryptAndSave()) {
 			System.out.println("Decrypt button clicked");
 			
-			String nFileStr = "00" + nFile;
-			nFileStr = nFileStr.substring(nFileStr.length() - 3);
+			File inputFile = this.getView().getFileChooser().getSelectedFile();
 			
-			String inputPath = "C:\\Users\\vince\\Desktop\\fichiers_cryptes\\" + "fichier" + nFileStr + "crypte.txt";
-			String outputPath = "C:\\Users\\vince\\Desktop\\fichiers_decryptes\\" + "fichier" + nFileStr + "decrypte.txt";
+			if (inputFile == null || inputFile.exists()) {
+				this.getView().getTextpanel().setText("Selected File doesn't exists.");
+				return;
+			}
 			
-			File inputFile = new File(inputPath);
-			File outputFile = new File(outputPath);
+			if (inputFile.exists()) {
+				this.getView().getTextpanel().setText("Selected File doesn't exists.");
+				return;
+			}
+			
+			File outputFile = new File(inputFile.getAbsolutePath().replaceFirst(".txt", "_decrypted.txt"));
 			BufferedReader rd = null;
 			BufferedWriter wr = null;
 
