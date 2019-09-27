@@ -148,7 +148,7 @@ public class DecryptWindow extends JFrame implements ActionListener{
 		);
 		
 		this.setTextpanel(new JTextPane());
-		this.getTextpanel().setText("teststetuyzdgkjd");
+		this.getTextpanel().setText("Waiting...");
 		scrollPane.setViewportView(this.getTextpanel());
 		panel.setLayout(gl_panel);
 		

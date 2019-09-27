@@ -40,12 +40,7 @@ public class DecryptCtrl implements ActionListener {
 			
 			File inputFile = this.getView().getFileChooser().getSelectedFile();
 			
-			if (inputFile == null || inputFile.exists()) {
-				this.getView().getTextpanel().setText("Selected File doesn't exists.");
-				return;
-			}
-			
-			if (inputFile.exists()) {
+			if (inputFile == null || !inputFile.exists()) {
 				this.getView().getTextpanel().setText("Selected File doesn't exists.");
 				return;
 			}
